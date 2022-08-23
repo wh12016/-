@@ -1,0 +1,32 @@
+name: morning
+on:
+  schedule:
+  - cron:  '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    name: send morning to your girlfriend
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        ref: master
+
+    - name: sender
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - run: pip install -r ./requirements.txt && python ./main.py
+
+    env:
+      APP_ID: ${{ wx8e671ea725e5a485.APP_ID }}
+      APP_SECRET: ${{ 8d0e93eaad3697ed576f22742153b96a.APP_SECRET }}
+      TEMPLATE_ID: ${{ My3Q_X8ecaINMnEheVIZ0ejJQ4qVQ9Vjfk4sxL0Tckg.TEMPLATE_ID }}
+      USER_ID: ${{ okH8y6VZ-EXlMKIxrLniff7MoRbY.USER_ID }}
+      START_DATE: ${{ 2020-1-1.START_DATE }}
+      BIRTHDAY: ${{ 0402.BIRTHDAY }}
+      CITY: ${{ 邢台.CITY }}
